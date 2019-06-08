@@ -6,7 +6,7 @@ COPY pom.xml .
 COPY src src
 COPY .mvn .mvn
 
-RUN ./mvnw clean install
+RUN ./mvnw install
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 FROM openjdk:8-jdk-alpine
