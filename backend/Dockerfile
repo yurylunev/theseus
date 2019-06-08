@@ -4,6 +4,7 @@ WORKDIR /workspace/app
 COPY mvnw .
 COPY pom.xml .
 COPY src src
+COPY .mvn .mvn
 
 RUN ./mvnw clean install
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
