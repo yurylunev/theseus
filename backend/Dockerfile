@@ -1,15 +1,14 @@
 FROM openjdk:8-jdk-alpine as build
-WORKDIR /workspace/app
+WORKDIR /usr/local/tomcat/webapps
 
 COPY mvnw .
 COPY pom.xml .
 COPY src src
 COPY .mvn .mvn
-CMD pwd
-RUN ./mvnw install
+RUN ./mvnw clean install
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 FROM openjdk:8-jdk-alpine
-ARG DEPENDENCY=/workspace/app/target/dependency
+ARG DEPENDENCY=/usr/local/tomcat/webapps/target/dependency
 COPY target/tesey-0.0.1-SNAPSHOT.war .
 ENTRYPOINT ["java","-jar","/tesey-0.0.1-SNAPSHOT.war"]
