@@ -2,11 +2,11 @@ FROM openjdk:8-jdk-alpine as build
 RUN apk add --no-cache maven
 WORKDIR /workspace/app
 
-COPY mvnw .
+#COPY mvnw .
 COPY pom.xml .
 COPY src src
-COPY .mvn .mvn
-RUN ./mvnw clean install
+#COPY .mvn .mvn
+RUN mvn clean install
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 FROM openjdk:8-jdk-alpine

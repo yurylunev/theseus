@@ -10,8 +10,6 @@ services:
 
   theseus-front:
     build: frontend
-    depends_on:
-      - theseus-backend
     restart: always
 
   theseus-backend:
