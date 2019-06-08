@@ -11,5 +11,5 @@ RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 FROM openjdk:8-jdk-alpine
 ARG DEPENDENCY=/workspace/app/target/dependency
-COPY target/tesey-0.0.1-SNAPSHOT.war .
+COPY /workspace/app/target/tesey-0.0.1-SNAPSHOT.war .
 ENTRYPOINT ["java","-jar","/tesey-0.0.1-SNAPSHOT.war"]
