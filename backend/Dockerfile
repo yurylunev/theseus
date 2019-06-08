@@ -10,5 +10,5 @@ RUN ./mvnw install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 FROM openjdk:8-jdk-alpine
-COPY target/tesey-0.0.1-SNAPSHOT.war
+COPY target/tesey-0.0.1-SNAPSHOT.war .
 ENTRYPOINT ["java","-jar","/tesey-0.0.1-SNAPSHOT.war"]
