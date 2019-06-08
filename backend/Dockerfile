@@ -1,11 +1,11 @@
 FROM openjdk:8-jdk-alpine as build
-#WORKDIR /workspace/app
+WORKDIR /workspace/app
 
 COPY mvnw .
 COPY pom.xml .
 COPY src src
 COPY .mvn .mvn
-
+CMD pwd
 RUN ./mvnw install
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
