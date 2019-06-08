@@ -12,16 +12,16 @@ services:
     build: frontend
     restart: always
 
-  theseus-backend:
-    build: ./backend
-    restart: always
-    command: catalina.sh run
-    environment:
-      PGHOST: theseus-db
-      PGPORT: 5432
-      PGUSER: postgres
-      PGPASSWORD: PGpasswordTheseus
-      PGDATABASE: theseusDB
+#  theseus-backend:
+#    build: ./backend
+#    restart: always
+#    command: catalina.sh run
+#    environment:
+#      PGHOST: theseus-db
+#      PGPORT: 5432
+#      PGUSER: postgres
+#      PGPASSWORD: PGpasswordTheseus
+#      PGDATABASE: theseusDB
 
   theseus-db:
     image: postgres:latest
