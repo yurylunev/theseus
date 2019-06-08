@@ -1,4 +1,14 @@
-FROM tomcat:8.5.40-jre11-slim
-WORKDIR /usr/local/tomcat/webapps
-CMD mvn war:war
-CMD cp target/*.war /usr/local/tomcat/webapps
+FROM openjdk:8-jdk-alpine as build
+WORKDIR /workspace/app
+
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
+
+RUN ./mvnw install -DskipTests
+RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+
+FROM openjdk:8-jdk-alpine
+COPY target/tesey-0.0.1-SNAPSHOT.war .
+ENTRYPOINT ["java","-jar","/tesey-0.0.1-SNAPSHOT.war"]
