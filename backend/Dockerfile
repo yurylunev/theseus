@@ -1,14 +1,15 @@
 FROM openjdk:8-jdk-alpine as build
-WORKDIR /usr/local/tomcat/webapps
+RUN apk add --no-cache maven
+WORKDIR /workspace/app
 
 COPY mvnw .
 COPY pom.xml .
 COPY src src
 COPY .mvn .mvn
-RUN /bin/sh -c "mvnw clean install"
+RUN ./mvnw clean install
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 FROM openjdk:8-jdk-alpine
-ARG DEPENDENCY=/usr/local/tomcat/webapps/target/dependency
+ARG DEPENDENCY=/workspace/app/target/dependency
 COPY target/tesey-0.0.1-SNAPSHOT.war .
 ENTRYPOINT ["java","-jar","/tesey-0.0.1-SNAPSHOT.war"]
