@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+
+  theseus-front:
+    build: frontend
+    depends_on:
+      - theseus-backend
+    restart: always
+
+  theseus-back:
+    build: ./backend
+    restart: always
+    command: catalina.sh run
+    environment:
+      PGHOST: theseus-db
+      PGPORT: 5432
+      PGUSER: postgres
+      PGPASSWORD: PGpasswordTheseus
+      PGDATABASE: theseusDB
+
+  theseus-db:
+    image: postgres:latest
+    volumes:
+      - theseusDB:/var/lib/postgresql/data
+    restart: always
+    environment:
+      PGPASSWORD: PGpasswordTheseus
+
+volumes:
+  theseusDB:
+
+networks:
+  default:
+    external:
+      name: nginx_http-net
