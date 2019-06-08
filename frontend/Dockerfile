@@ -1,9 +1,9 @@
-FROM nginx:latest
+FROM node:latest
 
-RUN rm /etc/nginx/conf.d/default.conf
+WORKDIR /usr/src/app
 
-COPY ./conf.d/* /etc/nginx/conf.d/
-
-WORKDIR /usr/share/nginx/
-
-COPY ./html/ ./html/
+#COPY package*.json ./
+#
+#RUN npm install
+#
+#COPY . .

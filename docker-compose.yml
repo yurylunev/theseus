@@ -2,6 +2,12 @@ version: '3.7'
 
 services:
 
+  theseus-ingress:
+    build: ingress
+    depends_on:
+      - theseus-front
+    restart: always
+
   theseus-front:
     build: frontend
     depends_on:
