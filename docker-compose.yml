@@ -10,6 +10,7 @@ services:
 
   theseus-front:
     build: frontend
+    command: npm start
     restart: always
 
 #  theseus-backend:
