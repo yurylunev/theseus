@@ -19,7 +19,7 @@ export default class extends React.Component {
                     <div className={`expandableMenu ${(this.state.visibility) ? 'expanderVisible' : 'expanderExpanded'}`}>
                         <label className="filterLabel">
                             <span>Город</span>
-                            <input type='text' name="city" value={this.props.city} onChange={this.props.onChange} className="filterInput"/>
+                            <input type='text' name="city" value={this.props.city} onChange={this.props.onChange} className="filterInput" required/>
                         </label>
                         <label className="filterLabel">
                             <span>Категория</span>
@@ -92,11 +92,16 @@ export default class extends React.Component {
                     }
                     .filterExpander {
                         border: none;
-                        margin: 1rem auto;
+                        width: 100%;
+                        padding: 1rem 0;
+                        background: transparent;
                         cursor: pointer;
                         overflow: hidden;
                         transform: rotateX(-180deg);
                         transition: transform .5s ease-in-out;
+                    }
+                    .filterExpander > * {
+                        pointer-events: none;
                     }
                     .filterExpander.expanderRotate {
                         transform: rotateX(0);
