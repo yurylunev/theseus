@@ -3,8 +3,12 @@ version: '3.7'
 services:
 
   theseus-front-dev:
-    build: dev-front
+    build:
+      context: ./
+      dockerfile: dev-front
     command: npm start
+    volumes:
+      - ./src:/usr/src/app
     restart: always
 
 networks:
