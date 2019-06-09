@@ -12,6 +12,8 @@ services:
     build: frontend
     command: npm start
     restart: always
+    volumes:
+      - theseus_data:/usr/src/app
 
 #  theseus-backend:
 #    build: ./backend
@@ -34,6 +36,7 @@ services:
 
 volumes:
   theseusDB:
+  theseus_data:
 
 networks:
   default:
