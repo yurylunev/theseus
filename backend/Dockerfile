@@ -1,14 +1,4 @@
-FROM openjdk:8-jdk-alpine as build
-WORKDIR /workspace/app
-
-COPY mvnw .
-COPY .mvn .mvn
-COPY pom.xml .
-COPY src src
-
-RUN ./mvnw install -DskipTests
-RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
-
 FROM openjdk:8-jdk-alpine
-COPY target/tesey-0.0.1-SNAPSHOT.war
-ENTRYPOINT ["java","-jar","/tesey-0.0.1-SNAPSHOT.war"]
+VOLUME /tmp
+ADD /target/theseus-0.1.jar app.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
