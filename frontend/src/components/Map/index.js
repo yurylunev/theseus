@@ -5,6 +5,7 @@ import HeatmapLayer from 'react-leaflet-heatmap-layer';
 import data from '../../frontend_html_density-map.json';
 import polygons from '../../polygons_walk_area_all_point.json';
 import restraunts from '../../polygons.json';
+import fastFood from '../../polygons_ff.json';
 
 export default class extends React.Component {
     state = {
@@ -66,6 +67,18 @@ export default class extends React.Component {
                         Object.values(restraunts).map((item, i) => <Polygon 
                             positions={item[1].map(item => item.reverse())}
                             color='#FF3E3E'
+                            key={i}/>)
+                    }
+                    {(type == 'Фаст Фуд') && 
+                         Object.values(fastFood).map((item, i) => <Polygon 
+                            positions={item[0].map(item => item.reverse())}
+                            color='#5582AC'
+                            key={i}/>)
+                    }
+                    {(type == 'Фаст Фуд') && 
+                        Object.values(fastFood).map((item, i) => <Polygon 
+                            positions={item[1].map(item => item.reverse())}
+                            color='#2368A7'
                             key={i}/>)
                     }
                     {this.props.children}

@@ -26,6 +26,7 @@ export default class extends React.Component {
   }
   onInputChange = (e) => {
     e.persist();
+    console.log(e.target);
     this.setState({[e.target.name]:e.target.value});
   }
   onLayerChange = (e) => {

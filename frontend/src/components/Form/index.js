@@ -23,7 +23,10 @@ export default class extends React.Component {
                         </label>
                         <label className="filterLabel">
                             <span>Категория</span>
-                            <input type='text' name="type" value={this.props.type} onChange={this.props.onChange} className="filterInput"/>
+                            <select name="type" value={this.props.type} onChange={this.props.onChange} className="filterSelect">
+                                <option className="filterOption" name="type" value='Ресторан'>Ресторан</option>
+                                <option className="filterOption" name="type" value='Фаст Фуд'>Фаст фуд</option>
+                            </select>
                         </label>
                         <button type="submit" 
                                 className={`filterSubmit`}
@@ -110,7 +113,9 @@ export default class extends React.Component {
                         max-height: 70rem;
                         transition: max-height .5s ease-in-out;
                     }
-
+                    .filterSelect {
+                        font-size: 1.6rem;
+                    }
                     .expanderExpanded {
                         max-height: 0;
                         transition: max-height .5s ease-in-out;
