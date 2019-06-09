@@ -1,5 +1,5 @@
 FROM node:latest
 WORKDIR /usr/src/app
-COPY ./frontend/package*.json ./
+COPY ./package*.json ./
 RUN npm install
-COPY ./frontend/ .
+COPY ./ .
