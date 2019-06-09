@@ -12,9 +12,9 @@ services:
     build: frontend
     command: npm start
     restart: always
-    volumes:
-      - theseus_data:/usr/src/app
-#  theseus-backend:
+#    volumes:
+#      - theseus_data:/usr/src/app
+##  theseus-backend:
 #    build: ./backend
 #    restart: always
 #    command: catalina.sh run
