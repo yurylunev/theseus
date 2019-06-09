@@ -11,6 +11,8 @@ services:
   theseus-front:
     build: frontend
     command: npm start
+    volumes:
+      - /home/server/theseus/_dev:/usr/src/app
     restart: always
 
 #  theseus-backend:
