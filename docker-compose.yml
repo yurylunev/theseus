@@ -10,20 +10,20 @@ services:
 
   theseus-front:
     build: frontend
-    depends_on:
-      - theseus-backend
+    command: npm start
     restart: always
-
-  theseus-backend:
-    build: ./backend
-    restart: always
-    command: catalina.sh run
-    environment:
-      PGHOST: theseus-db
-      PGPORT: 5432
-      PGUSER: postgres
-      PGPASSWORD: PGpasswordTheseus
-      PGDATABASE: theseusDB
+    volumes:
+      - theseus_data:/usr/src/app
+#  theseus-backend:
+#    build: ./backend
+#    restart: always
+#    command: catalina.sh run
+#    environment:
+#      PGHOST: theseus-db
+#      PGPORT: 5432
+#      PGUSER: postgres
+#      PGPASSWORD: PGpasswordTheseus
+#      PGDATABASE: theseusDB
 
   theseus-db:
     image: postgres:latest
@@ -35,6 +35,7 @@ services:
 
 volumes:
   theseusDB:
+  theseus_data:
 
 networks:
   default:

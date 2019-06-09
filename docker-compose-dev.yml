@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+
+  theseus-front-dev:
+    build:
+      context: ./frontend
+      dockerfile: ../dev-front/Dockerfile
+    command: npm start
+    volumes:
+      - /home/server/theseus/_dev:/usr/src/app
+    restart: always
+
+networks:
+  default:
+    external:
+      name: nginx_http-net
